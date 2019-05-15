@@ -1,5 +1,9 @@
 package model
 
+import util.{Direction, MoveSetUtil}
+
+import scala.collection.immutable.Vector
+
 case class Rook(override val color: Boolean,override val hasMoved: Boolean) extends ChessPiece(color,hasMoved) {
 
   override def getPossibleMoves(chessBoard:ChessBoard): Vector[(Int, Int)] = {

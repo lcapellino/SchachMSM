@@ -1,4 +1,4 @@
-name := "Schach"
+name := "SchachMSM"
 
 version := "1.0"
 

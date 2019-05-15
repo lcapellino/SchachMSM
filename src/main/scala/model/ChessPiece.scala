@@ -1,5 +1,7 @@
 package model
 
+import scala.collection.immutable.Vector
+
 abstract class ChessPiece(val color: Boolean,val hasMoved: Boolean) {
 
   def getPossibleMoves(chessBoard: ChessBoard): Vector[(Int, Int)]

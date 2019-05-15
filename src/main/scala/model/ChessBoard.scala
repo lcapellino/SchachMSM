@@ -1,5 +1,7 @@
 package model
 
+import play.api.libs.json.{JsBoolean, JsNumber, JsObject, JsString, Json}
+
 case class ChessBoard(field: Vector[Vector[Option[ChessPiece]]], currentPlayer: Boolean  = true, check: Option[Boolean] = None,checkmate: Option[Boolean] = None,simulated: Boolean = false) {
 
   def defaultInit(): ChessBoard ={
@@ -245,6 +247,20 @@ case class ChessBoard(field: Vector[Vector[Option[ChessPiece]]], currentPlayer: 
   def toJson(): JsObject = {
 
     var pieces: Vector[(Int,Int,Boolean,String)] = Vector()
+    var checkString: String = ""
+    var checkMateString: String = ""
+
+    if(check.isEmpty){
+      checkString = "None"
+    } else {
+      checkString = check.get.toString
+    }
+
+    if(checkmate.isEmpty){
+      checkMateString = "None"
+    } else {
+      checkMateString = checkmate.get.toString
+    }
 
     for (y <- field.indices) {
       for (x <- field.indices) {
@@ -258,6 +274,9 @@ case class ChessBoard(field: Vector[Vector[Option[ChessPiece]]], currentPlayer: 
       "grid" -> Json.obj(
         "size" -> JsNumber(field.length),
         "player" -> JsBoolean(currentPlayer),
+        "simulated" -> JsBoolean(simulated),
+        "check" -> JsString(checkString),
+        "checkmate" -> JsString(checkMateString),
         "cells" -> Json.toJson(
           for {
             p <- pieces
