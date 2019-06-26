@@ -17,11 +17,12 @@ case class WebServer() {
 
   implicit val system = ActorSystem()
   implicit val materializer = ActorMaterializer()
-  implicit val executionContext = system.dispatcher
+  implicit val executionContext = system.dispatchers.lookup("task-dispatcher")
+  println("executionContext: " +executionContext.toString)
   val json = JsonUtil()
 
-  val apiRoutes: Route =
-        path("move") {
+  val apiRoutes: Route = path("move") {
+
           parameters('x.as[Int], 'y.as[Int], 'xNew.as[Int], 'yNew.as[Int]) { (x,y,xNew,yNew) =>
             post {
               entity(as[String]) { param =>

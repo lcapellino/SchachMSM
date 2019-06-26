@@ -28,7 +28,7 @@ libraryDependencies += "com.typesafe.akka" %% "akka-http" % "10.1.8"
 
 libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "3.1.3"
 
-libraryDependencies += "io.gatling"            % "gatling-test-framework"    % "3.1.3"
+libraryDependencies += "io.gatling" % "gatling-test-framework" % "3.1.3"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor"                     % akkaVersion,
