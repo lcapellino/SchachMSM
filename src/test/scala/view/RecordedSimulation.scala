@@ -17,22 +17,22 @@ class RecordedSimulation extends Simulation {
 
   val uri1 = "http://localhost:8080"
 
-  val scn = scenario("de.htwg.se.sudoku.aview.RecordedSimulation")
+  val scn = scenario("de.htwg.se.schach.aview.RecordedSimulation")
     .exec(http("request_0")
       .post("/move?x=0&y=1&xNew=0&yNew=3")
       .header("Content-Type", "application/json")
       .body(StringBody(board)).asJson
     )
-    .exec(http("request_0")
+    .exec(http("request_1")
       .post("/move?x=0&y=1&xNew=0&yNew=3")
       .header("Content-Type", "application/json")
       .body(StringBody(board)).asJson
     )
-    .exec(http("request_0")
+    .exec(http("request_2")
       .post("/move?x=0&y=1&xNew=0&yNew=3")
       .header("Content-Type", "application/json")
       .body(StringBody(board)).asJson
     )
 
-  setUp(scn.inject(atOnceUsers(10))).protocols(httpProtocol)
+  setUp(scn.inject(atOnceUsers(400))).protocols(httpProtocol)
 }
